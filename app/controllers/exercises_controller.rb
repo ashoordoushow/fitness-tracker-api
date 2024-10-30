@@ -33,4 +33,10 @@ class ExercisesController < ApplicationController
     @exercise.save
   end
 
+  def destroy
+    @exercise = Exercise.find_by(id: params[:id])
+    @exercise.destroy
+    render json: {message: "exercise deleted successfully"}
+  end
+
 end

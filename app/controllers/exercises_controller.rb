@@ -20,4 +20,17 @@ class ExercisesController < ApplicationController
     render :show
   end
 
+  def update
+    @exercise = Exercise.find_by(id: params[:id])
+    @exercise.update(
+      workout_id: params[:workout_id] || @exercise.workout_id,
+      name: params[:name] || @exercise.name,
+      reps: params[:reps] || @exercise.reps,
+      sets: params[:sets] || @exercise.sets,
+      image_url: params[:image_url] || @exercise.image_url,
+    )
+    render :show
+    @exercise.save
+  end
+
 end

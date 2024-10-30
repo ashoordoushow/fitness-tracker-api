@@ -24,4 +24,13 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     assert_equal ["id", "workout_id", "name", "reps", "sets", "image_url" "created_at", "updated_at"], data.keys
   end
 
+  test "update" do
+    exercise = Exercise.first
+    patch "/exercises/#{exercise.id}.json", params: { name: "Updated name" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated name", data["name"]
+  end
+
 end
